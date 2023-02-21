@@ -9,6 +9,7 @@ __pycache__
 # Tox directory
 .tox
 # Other generated files
+src/tox_ansible/version.py
 .coverage
 .coverage.*
 htmlcov

@@ -1,11 +1,59 @@
 [build-system]
 requires = [
-  "setuptools >= 42.0.0",  # required by pyproject+setuptools_scm integration
-  "setuptools_scm[toml] >= 3.5.0",  # required for "no-local-version" scheme
+  "setuptools >= 61",  # required by pyproject+setuptools_scm integration
+  "setuptools_scm[toml] >= 4",  # required for "no-local-version" scheme
   "setuptools_scm_git_archive >= 1.0",
-  "wheel",
+  "wheel >= 0.29.0",
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "tox-ansible"
+description = "Auto-generate environments for molecule role testing"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+keywords = [
+    "ansible",
+    "tox",
+    "tox-plugin",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Framework :: tox",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Testing"
+]
+dependencies = [
+    "tox >= 4",
+    "py >= 1.9.0",
+    "pyyaml"
+]
+authors = [
+    { name = "Greg Hellings", email = "greg.hellings@gmail.com"}
+]
+dynamic = ["version"]
+
+[project.urls]
+homepage = "https://github.com/tox-dev/tox-ansible"
+repository = "https://github.com/tox-dev/tox-ansible"
+
+[project.entry-points.tox]
+ansible-collection = "tox_ansible.hooks"
+
+[tool.setuptools_scm]
+write_to = "src/tox_ansible/version.py"
+
+#[tool.setuptools]
+#use_scm_version = True
+#include_package_data = True
+#zip_safe = False
+#
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.black]
 skip-string-normalization = false
